@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <style>
+    /* Style for navigation bar */
+    body{
+      background-color: #16336d;
+    }
+
+    .headimg{
+      width: 100%;
+    }
+    .navbar {
+      background-color: #0093dd;
+      overflow: hidden;
+    }
+
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      font-weight: 900;
+      font-size: medium;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #7da3ea;
+      color: black;
+      border: 2px solid rgb(31, 24, 226);
+      border-radius: 50px;
+    }
+
+    /* Style for slideshow container */
+    .slideshow-container {
+      width: 500px;
+      position: absolute;
+      left: 20%;
+      top: 44%;
+      margin: auto;
+    }
+
+    /* Style for images in the slideshow */
+    .mySlides img {
+      width: 200%;
+      height: 100%;
+    }
+
+    /* Style for footer */
+    .footer {
+      background-color: #0093dd;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      position:absolute;
+      top: 130%;
+      width: 100%;
+    }
+    .head{
+      font-size: 40px;
+      text-align: center;
+      font-family:Arial, Helvetica, sans-serif;
+      text-shadow: 2px 2px #ed2e2e;
+      color: #ff0000;
+    }
+  </style>
+  
+</head>
+<body>
+  <img class="headimg" src="header.png" alt="header image">
+<!-- Navigation Bar -->
+<div class="navbar">
+  <a href="home.html">HOME</a>
+  <a href="cal.html">SAP POINT</a>
+  <a href="onduty.html">ON DUTY</a>
+  <a href="reference.html">REFERENCE</a>
+</div>
+
+<h1 class="head">UPCOMING EVENTS!!!!</h1><br>
+<!-- Slideshow Container -->
+<div class="slideshow-container">
+  <!-- Slides -->
+  <div class="mySlides">
+    <img src="bg.jpg" >
+  </div>
+
+  <div class="mySlides">
+    <img src="bg1.jpg" >
+  </div>
+
+  <div class="mySlides">
+    <img src="bg2.jpg">
+  </div>
+</div>
+
+
+<!-- Footer -->
+<div class="footer">
+  <p>&copy; 2024 Kongu Engineering College. All Rights Reserved.</p>
+</div>
+
+<!-- JavaScript for Slideshow -->
+<script>
+  var slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
+  }
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On Duty Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #16336d;
+  }
+  .headimg{
+      width: 100%;
+    }
+    
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color:  #F5F5DC;
+  }
+  h1 {
+    text-align: center;
+    color: #F5F5DC;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  input[type="file"],
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  input[type="file"] {
+    cursor: pointer;
+  }
+  button {
+    background-color: #0093dd;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #00bff4;
+  }
+
+  .navbar {
+      background-color: #0093dd;
+      overflow: hidden;
+      height: 60px;
+      width: 100%;
+    }
+
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      font-weight: 900;
+      font-size: medium;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #7da3ea;
+      color: black;
+      border: 2px solid rgb(31, 24, 226);
+      border-radius: 50px;
+    }
+
+
+
+</style>
+</head>
+<body>
+  <img class="headimg" src="header.png" alt="header image">
+  <!-- Navigation Bar -->
+<div class="navbar">
+  <a href="home.html">HOME</a>
+  <a href="cal.html">SAP POINT</a>
+  <a href="onduty.html">ON DUTY</a>
+  <a href="reference.html">REFERENCE</a>
+</div>
+
+<h1>On Duty Form</h1>
+
+<form action="#" method="POST" enctype="multipart/form-data">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+  </div>
+  <div>
+    <label for="rollno">Roll Number:</label>
+    <input type="text" id="rollno" name="rollno" required>
+  </div>
+  <div>
+    <label for="dateofevent">Date of Event:</label>
+    <input type="date" id="dateofevent" name="dateofevent" required>
+  </div>
+  <div>
+    <label for="time">Time from:</label>
+    <input type="time" id="time" name="time" required>
+  </div>
+  <div>
+    <label for="time">Time to:</label>
+    <input type="time" id="time" name="time" required>
+  </div>
+  <div>
+    <label for="file">Upload File:</label>
+    <input type="file" id="file" name="file" accept=".pdf">
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

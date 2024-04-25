@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(47, 65, 231);
+        }
+
+        .navbar {
+      background-color: #0093dd;
+      overflow: hidden;
+    }
+
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      font-weight: 900;
+      font-size: medium;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #7da3ea;
+      color: black;
+      border: 2px solid rgb(31, 24, 226);
+      border-radius: 50px;
+    }
+
+
+
+        .container {
+            position: absolute;
+            top: 40%;
+            left: 38%;
+            height: 100vh;
+            height: 100%;
+            width: 25%;
+
+        }
+
+        .options {
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .option-btn {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 16px;
+        }
+
+        .option-btn:focus {
+            outline: none;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+       
+            /* Style for select options */
+            select#collegeType {
+                font-size: 17px; /* Adjust the font size as needed */
+                width: 100%; /* Adjust the width as needed */
+            }
+        
+            /* Hover effect for select options */
+            select#collegeType option:hover {
+                background-color: #5ac513; /* Change to the desired hover background color */
+                color: #000; /* Change to the desired hover text color */
+            }
+       
+            label[for='collegeType'] {
+                font-size: 20px; /* Adjust the font size as needed */
+                color: #333; /* Change the color of the label if needed */
+                margin-bottom: 10px;
+               
+            }
+
+            .form-label {
+                font-size: 20px;
+                margin-bottom: 10px; /* Add space below each label */
+                font-style: Amasis MT Pro Medium;
+                color:rgb(25, 22, 197)
+            }
+            
+            .form-input,
+            .form-select {
+                font-size: 18px;
+                margin-bottom: 19px; /* Add space below each input/select */
+            }
+            
+            .form-button {
+                font-size: 18px;
+                margin-top: 20px; /* Add space above the button */
+            }
+            
+            .headimg{
+      width: 100%;
+    }
+    </style>
+</head>
+
+<body>
+
+    <img class="headimg" src="header.png" alt="header image">
+
+    <div class="navbar">
+        <a href="home.html">HOME</a>
+        <a href="cal.html">SAP POINT</a>
+        <a href="onduty.html">ON DUTY</a>
+        <a href="reference.html">REFERENCE</a>
+      </div>
+        
+    <div class="container">
+        <div class="options">
+            <input type="checkbox" class="option-btn" onclick="showContent('submitted')"><h3>Submitted</h3></input>
+            <input type="checkbox" class="option-btn" onclick="showContent('presented')"><h3>Presented</h3></input>
+            <input type="checkbox" class="option-btn" onclick="showContent('published')"><h3>Published</h3></input>
+
+            <div class="content" id="content">
+                
+            </div>
+        </div>
+    </div>
+   
+    <script>
+        function submitForm() {
+            let eventName = document.getElementById('eventName').value;
+            let eventDate = document.getElementById('eventDate').value;
+            let department = document.getElementById('department').value;
+            let pdfUpload = document.getElementById('pdfUpload').value;
+            let participationPrize = document.getElementById('participationPrize').value;
+            let position = document.getElementById('position').value;
+            let prizeAmount = document.getElementById('prizeAmount').value;
+            let collegeType = document.getElementById('collegeType').value;
+            let collegeCategory = document.getElementById('collegeCategory').value;
+
+            // Calculate form points based on participationPrize value
+            let formPoints = 0;
+
+            if (participationPrize === 'participation') {
+                formPoints = 5;
+            } else if (participationPrize === 'prize') {
+                formPoints = 10;
+            }
+
+            // Calculate SAP based on form values
+            let sap = 0;
+            const presentationsCount = 1; // Assuming one presentation for simplicity
+
+            if (position === '1st') {
+                sap = presentationsCount * 20; // 20 points for 1st position
+            } else if (position === '2nd') {
+                sap = presentationsCount * 15; // 15 points for 2nd position
+            } else if (position === '3rd') {
+                sap = presentationsCount * 10; // 10 points for 3rd position
+            } else {
+                sap = presentationsCount * 5; // 5 points for participation without prize
+            }
+
+            // Display points calculation result
+            document.getElementById('sapResult').innerHTML = "<h2>SAP Points: " + sap + "</h2>";
+
+            // Display SAP points as the user's SAP points
+            document.getElementById('yourSAPPoints').innerHTML = "<h2>Your SAP Points: " + sap + "</h2>";
+
+            // You can do further processing with the form data here
+            console.log("Event Name:", eventName);
+            console.log("Event Date:", eventDate);
+            console.log("Department:", department);
+            console.log("PDF Upload:", pdfUpload);
+            console.log("Participation/Prize:", participationPrize);
+            console.log("Position:", position);
+            console.log("Prize Amount:", prizeAmount);
+            console.log("College Type:", collegeType);
+            console.log("College Category:", collegeCategory);
+        }
+
+        function showContent(status) {
+            let contentDiv = document.getElementById("content");
+            let content = "";
+
+            if (status === 'submitted') {
+                content = "Content for submitted status";
+            } else if (status === 'presented') {
+                content += "<div class='form-group'>";
+                content += "<label for='collegeType'>Select College Type:</label><br><br>";
+                content += "<select id='collegeType' onchange='showForm(this.value)'>";
+                content += "<option value=''>Select</option>";
+                content += "<option value='inter'>Inter College</option>";
+                content += "<option value='outer'>Outer College</option>";
+                content += "</select><br><br>";
+                content += "</div>";
+            } else if (status === 'published') {
+                content = "Content for published status";
+            }
+
+            contentDiv.innerHTML = content;
+        }
+
+        function showForm(collegeType) {
+            let formDiv = document.createElement('div');
+            formDiv.classList.add('form-group');
+
+            if (collegeType === 'inter') {
+                formDiv.innerHTML = `
+                <label for='eventName' class='form-label'>Event Name:</label><br><br>
+                <input type='text' id='eventName' class='form-input'><br>
+                <label for='eventDate' class='form-label'>Event Date:</label><br><br>
+                <input type='date' id='eventDate' class='form-input'><br>
+                <label for='department' class='form-label'>Department:</label><br><br>
+                <input type='text' id='department' class='form-input'><br>
+                <label for='pdfUpload' class='form-label'>PDF Upload:</label><br><br>
+                <input type='file' id='pdfUpload' class='form-input'><br>
+                <label for='participationPrize' class='form-label'>Participation/Prize:</label><br><br>
+                <select id='participationPrize' class='form-select'>
+                    <option value=''>Select</option>
+                    <option value='participation'>Participation</option>
+                    <option value='prize'>Prize</option>
+                </select>
+                <div id='prizeDetails'></div>
+                <label for='position' class='form-label'>Position:</label><br><br>
+                <select id='position' class='form-select'>
+                    <option value=''>Select</option>
+                    <option value='1st'>1st</option>
+                    <option value='2nd'>2nd</option>
+                    <option value='3rd'>3rd</option>
+                    <option value='participation'>Participation without prize</option>
+                </select><br><br>
+                <input type='text' id='prizeAmount' style='display: none;' class='form-input'><br>
+                <button onclick='submitForm()' class='form-button'>Submit</button>
+                <div id='pointsResult'></div>
+                <div id='sapResult'></div>
+                <div id='yourSAPPoints'></div>
+            `;
+            } else if (collegeType === 'outer') {
+                formDiv.innerHTML = `
+                <label for='eventName' class='form-label'>Event Name:</label><br><br>
+                <input type='text' id='eventName' class='form-input'><br>
+                <label for='eventDate' class='form-label'>Event Date:</label><br><br>
+                <input type='date' id='eventDate' class='form-input'><br>
+                <label for='department' class='form-label'>Department:</label><br><br>
+                <input type='text' id='department' class='form-input'><br>
+                <label for='pdfUpload' class='form-label'>PDF Upload:</label><br><br>
+                <input type='file' id='pdfUpload' class='form-input'><br>
+                <label for='participationPrize' class='form-label'>Participation/Prize:</label><br><br>
+                <select id='participationPrize' class='form-select'>
+                    <option value=''>Select</option>
+                    <option value='participation'>Participation</option>
+                    <option value='prize'>Prize</option>
+                </select><br><br>
+                <div id='prizeDetails'></div>
+                <label for='collegeCategory' class='form-label'>College Category:</label><br><br>
+                <select id='collegeCategory' class='form-select'>
+                    <option value=''>Select</option>
+                    <option value='premium'>Premium</option>
+                    <option value='non-premium'>Non-Premium</option>
+                </select><br><br>
+                <label for='position' class='form-label'>Position:</label><br><br>
+                <select id='position' class='form-select'>
+                    <option value=''>Select</option>
+                    <option value='1st'>1st</option>
+                    <option value='2nd'>2nd</option>
+                    <option value='3rd'>3rd</option>
+                    <option value='participation'>Participation without prize</option>
+                </select><br><br>
+                <input type='text' id='prizeAmount' style='display: none;' class='form-input'><br><br>
+                <button onclick='submitForm()' class='form-button'>Submit</button>
+                <div id='pointsResult'></div>
+                <div id='sapResult'></div>
+                <div id='yourSAPPoints'></div>
+            `;
+            }
+
+            let contentDiv = document.getElementById("content");
+            contentDiv.appendChild(formDiv);
+        }
+    </script>
+</body>
+
+</html>
